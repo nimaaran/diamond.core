@@ -1,11 +1,10 @@
 ﻿using Diamond.Core.Common.Enums;
 
-namespace Diamond.Core.Common.Interfaces
-{
-    public interface IEntity
-    {
-        IKey Id { get; set; }
+namespace Diamond.Core.Common.Interfaces;
 
-        bool IsValid(DataOperations operation);
-    }
+public interface IEntity
+{
+    IKey Id { get; set; }
+
+    bool IsValid(DataOperations operation);
 }

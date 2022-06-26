@@ -4,15 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Diamond.Core.Common.Interfaces
+namespace Diamond.Core.Common.Interfaces;
+
+public interface IKey
 {
-    public interface IKey
-    {
-        bool IsEmpty { get; }
-        Type KeyType { get; }
-        object? Value { get; }
-        T? Get<T>();
-        IKey Set<T>(T key);
-        IKey ClearKey();
-    }
+    bool IsEmpty { get; }
+    Type KeyType { get; }
+    object? Value { get; }
+    T? Get<T>();
+    IKey Set<T>(T key);
+    IKey ClearKey();
 }

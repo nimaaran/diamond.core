@@ -1,9 +1,8 @@
-﻿namespace Diamond.Core.Common.Interfaces
+﻿namespace Diamond.Core.Common.Interfaces;
+
+public interface ICollectionAssociation<T> : IEnumerable<T>
 {
-    public interface ICollectionAssociation<T> : IEnumerable<T>
-    {
-        IKey? Key { get; }
-        bool Initialized { get; }
-        IEnumerable<T>? Collection { get; }
-    }
+    IKey? Key { get; }
+    bool Initialized { get; }
+    IEnumerable<T>? Collection { get; }
 }

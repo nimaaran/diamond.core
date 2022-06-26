@@ -1,49 +1,43 @@
 ﻿using Diamond.Core.Common.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Diamond.Core.Common.Abstracts
+namespace Diamond.Core.Common.Abstracts;
+
+public abstract class AbstractKey : IKey
 {
-    public abstract class AbstractKey : IKey
+    public bool IsEmpty { get; private set; } = true;
+
+    public Type KeyType { get; private set; } = typeof(object);
+
+    public object? Value { get; private set; } = null;  
+
+    public IKey ClearKey()
     {
-        public bool IsEmpty { get; private set; } = true;
+        IsEmpty = true;
+        KeyType = typeof(object);
+        Value = null;   
 
-        public Type KeyType { get; private set; } = typeof(object);
+        return this;
+    }
 
-        public object? Value { get; private set; } = null;  
+    public T? Get<T>()
+    {
+        if (IsEmpty)
+            return default;
 
-        public IKey ClearKey()
-        {
-            IsEmpty = true;
-            KeyType = typeof(object);
-            Value = null;   
+        return (T)Value!;
+    }
 
-            return this;
-        }
+    public IKey Set<T>(T key)
+    {
+        IsEmpty = false;
+        Value = key;
+        KeyType = typeof(T);
 
-        public T? Get<T>()
-        {
-            if (IsEmpty)
-                return default;
+        return this;
+    }
 
-            return (T)Value!;
-        }
-
-        public IKey Set<T>(T key)
-        {
-            IsEmpty = false;
-            Value = key;
-            KeyType = typeof(T);
-
-            return this;
-        }
-
-        public AbstractKey()
-        {
-            ClearKey(); 
-        }
+    public AbstractKey()
+    {
+        ClearKey(); 
     }
 }
